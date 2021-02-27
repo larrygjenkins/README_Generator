@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/larrygjenkins/README_Generator/issues"
   },
-  "homepage": "https://github.com/larrygjenkins/README_Generator#readme"
+  "homepage": "https://github.com/larrygjenkins/README_Generator#readme",
+  "dependencies": {
+    "inquirer": "^8.0.0"
+  }
 }
