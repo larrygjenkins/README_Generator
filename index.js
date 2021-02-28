@@ -1,7 +1,10 @@
 const fs = require("fs");
 const inquirer = require("inquirer");
+const { fileURLToPath } = require("url");
 
 console.log(`Welcome to the README Generator`);
+
+// These are the questions the user will answer when setting up their README file.
 
 inquirer
     .prompt([
@@ -61,21 +64,21 @@ inquirer
         }
     ])
     .then((answers) => {
-        console.log(answers);
 
+        // These if/else if statements add a new key/value pair to the answers object, depending on the type of license the user chooses for their project. 
+       
         if (answers.license == "MIT") {
-            console.log("It's MIT");
-            // licenseBadge = "[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)";
+            answers.badgeURL = "[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)";
         }
         else if (answers.license == "Apache") {
-            console.log("It's Apache");
-            // licenseBadge = "[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)";
+            answers.badgeURL = "[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)";
 
         } else {
-            console.log("It's GPL");
-            // licenseBadge = "[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)";
+            answers.badgeURL = "[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)";
         }
-        
+
+        console.log(answers);
+
         const readMeContent = generateReadMe(answers);
 
         fs.writeFile("newREADME.md", readMeContent, (err) => 
@@ -83,8 +86,12 @@ inquirer
         );
     });
 
+
+// This function contains the Markdown for the README text. 
 const generateReadMe = (answers) =>
+
 `# ${answers.title}
+${answers.badgeURL}
 
 ## Description
 ${answers.description}
