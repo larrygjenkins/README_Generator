@@ -40,9 +40,9 @@ inquirer
             name: "license",
             message: "What type of license should apply to your project?",
             choices: ["MIT", "Apache", "GPL"],
-            filter: function (val) {
-                return val.toLowerCase();
-            }
+            // filter: function (val) {
+            //     return val.toLowerCase();
+            // }
         },
 
         {
@@ -65,5 +65,41 @@ inquirer
     ])
     .then((answers) => {
         console.log(answers);
+        const readMeContent = generateReadMe(answers);
 
+        fs.writeFile("newREADME.md", readMeContent, (err) => 
+            err ? console.error(err) : console.log(`The file was created.`)
+        );
     });
+
+    const generateReadMe = (answers) =>
+    `# ${answers.title}
+
+## Description
+${answers.description}
+
+## Table of Contents
+
+- [Installation](#installation)
+- [Usage](#usage)
+- [Testing](#testing)
+- [Questions](#questions)
+
+## Installation
+${answers.install}
+
+## Usage
+${answers.usage}
+
+## Testing
+${answers.testing}
+
+## Questions?
+Contact me at the following locations:
+
+* Email: <a href="mailto:${answers.email}">${answers.email}</a>
+* GitHub: <a href="https://github.com/${answers.github}">github.com/${answers.github}</a>
+
+## Testing
+Licensed under the ${answers.license} license.
+`
