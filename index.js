@@ -1,6 +1,5 @@
 const fs = require("fs");
 const inquirer = require("inquirer");
-const { fileURLToPath } = require("url");
 
 console.log(`Welcome to the README Generator`);
 
