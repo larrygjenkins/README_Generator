@@ -1,7 +1,9 @@
 const fs = require("fs");
 const inquirer = require("inquirer");
 
+console.log(`-------------------------------`);
 console.log(`Welcome to the README Generator`);
+console.log(`-------------------------------`);
 
 // These are the questions the user will answer when setting up their README file.
 

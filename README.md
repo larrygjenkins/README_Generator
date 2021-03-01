@@ -27,7 +27,7 @@ Most of the prompts use the "input" type, meaning users will enter text response
 
     {title: 'Daily Planner'}
 
-To give users a
+To give users a collection of license choices, a "list" type was used within Inquirer.js. 
 
 **Example of list question for license type**
 
@@ -38,29 +38,38 @@ To give users a
     choices: ["MIT", "Apache", "GPL"],
     }
 
-Text areas were used to capture events and/or tasks for each given time block. Each text area has an associated save button, and when a user selects the button, any text they entered is saved to local storage.  
+After the user responded to each prompt, the data entered was stored in a JavaScript object denoted as "answers". Since a portion of the acceptance criteria included displaying a badge that corresponded to the type of license chosen by the user, an if statement was used to create a new key/value pair, known as "badgeURL", within the "answers" object. This allowed that data to be referenced within the .md file created by the application.     
 
-**Example of event listener used to save data to local storage**
+**If statement used to create a new key/value pair within the answers object for badgeURL**
 
-    $(".saveBtn").on("click", function(){
-    event.preventDefault();
-    
-    var taskDescriptionNine = document.getElementById("9Task");
+    if (answers.license == "MIT") {
+            answers.badgeURL = "[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)";
+        }
+        else if (answers.license == "Apache") {
+            answers.badgeURL = "[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)";
 
-    localStorage.setItem("9AM", taskDescriptionNine.value);
-    })
+        } else {
+            answers.badgeURL = "[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)";
+        }
 
-This stored information is retrieved and displayed when a user refreshes (or returns to) the application.
+The answers were then passed to the function that generated the markup used within the new README file.
 
-**Example of variable and function used to retrieve data from local storage**
+**Passing answers object to generateReadMe function and calling function for writing new file with the README content**
 
-    var nineAmTask = localStorage.getItem("9AM");
+    const readMeContent = generateReadMe(answers);
 
-    function showTasks() {
-    $("#9Task").text(nineAmTask);
-    }
+        fs.writeFile("newREADME.md", readMeContent, (err) => 
+            err ? console.error(err) : console.log(`The file was created.`)
+        );
 
-    showTasks();
+**Example of template literal used to generate README file content**
+    const generateReadMe = (answers) =>
+
+    `# ${answers.title}
+    ${answers.badgeURL}
+
+    ## Description
+    ${answers.description}
 
 ## Technologies Used
 1. JavaScript
@@ -83,4 +92,4 @@ Use the following link to view a video demonstration of the application: [README
 ## Example Image
 Following is an image of the application:
 
-![README Generator Application](./assets/images/DailyPlannerScreenshot.PNG)
+![README Generator Application](./assets/images/README_Generator_Screenshot.PNG)
