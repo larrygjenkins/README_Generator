@@ -11,7 +11,7 @@ The goal of this project was to create a command-line application that would pro
 4. A badge corresponding to the type of license a user chose should display at the top of the README file after the title of the project.  
 
 ## Solution
-Users will launch this application from the command line, using the following notation: "node .\index.js". This application uses the Inquirer.js from Node Package Manager to ask users a series of questions related to the README file it will produce. 
+Users will launch this application from the command line, using the following notation: "node .\index.js". This application uses Inquirer.js from Node Package Manager to ask users a series of questions related to the README file it will produce. 
 
 **Example of syntax for Inquirer questions**
 
@@ -38,7 +38,7 @@ To give users a collection of license choices, a "list" type was used within Inq
     choices: ["MIT", "Apache", "GPL"],
     }
 
-After the user responded to each prompt, the data entered was stored in a JavaScript object denoted as "answers". Since a portion of the acceptance criteria included displaying a badge that corresponded to the type of license chosen by the user, an if statement was used to create a new key/value pair, known as "badgeURL", within the "answers" object. This allowed that data to be referenced within the .md file created by the application.     
+After a user responds to each prompt, the data entered is stored in a JavaScript object denoted as "answers". Since a portion of the acceptance criteria included displaying a badge that corresponds to the type of license chosen by the user, an if statement is used to create a new key/value pair, known as "badgeURL", within the "answers" object. This allows that data to be referenced within the README file created by the application.     
 
 **If statement used to create a new key/value pair within the answers object for badgeURL**
 
@@ -52,7 +52,7 @@ After the user responded to each prompt, the data entered was stored in a JavaSc
             answers.badgeURL = "[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)";
         }
 
-The answers were then passed to the function that generated the markup used within the new README file.
+The answers are then passed to the function that generates the markup used within the new README file.
 
 **Passing answers object to generateReadMe function and calling function for writing new file with the README content**
 
