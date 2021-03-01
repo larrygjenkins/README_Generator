@@ -117,6 +117,6 @@ Contact me at the following locations:
 * Email: <a href="mailto:${answers.email}">${answers.email}</a>
 * GitHub: <a href="https://github.com/${answers.github}">github.com/${answers.github}</a>
 
-## Testing
+## Licensing
 Licensed under the ${answers.license} license.
 `

@@ -7,46 +7,36 @@ The goal of this project was to create a command-line application that would pro
 ## Acceptance Criteria
 1. The application should be run entirely from the command line.
 2. Users are prompted with a series of questions, including the title of their project, a description, installation instructions, and licensing information. 
-3. After users answer all displayed questions, the application creates a new README file, whicih includes all of their responses in the appropriate sections. 
+3. After users answer all displayed questions, the application creates a new README file, which includes all of their responses in the appropriate sections.
+4. A badge corresponding to the type of license a user chose should display at the top of the README file after the title of the project.  
 
 ## Solution
-This application uses the Moment.js JavaScript library to retrieve and display the current date at the top of the page. 
+Users will launch this application from the command line, using the following notation: "node .\index.js". This application uses the Inquirer.js from Node Package Manager to ask users a series of questions related to the README file it will produce. 
 
-**Variable and function used to display current date**
+**Example of syntax for Inquirer questions**
 
-    var currentDate = moment().format("dddd, MMMM DD, YYYY");
+    inquirer
+    .prompt([
+        {
+            type: "input",
+            name: "title",
+            message: "What is the title of your project?",
+        },
 
-    function setDate() {
-        var displayDate = document.getElementById("currentDay");
-        displayDate.innerHTML = currentDate;
+Most of the prompts use the "input" type, meaning users will enter text responses to each question. User responses are stored in a JavaScript object, and in the syntax above, the entry included after "name" represents the key to which the response will be correlated. For example, if the user enters the title of their project as "Daily Planner", within the object, it will be represented as follows:
+
+    {title: 'Daily Planner'}
+
+To give users a
+
+**Example of list question for license type**
+
+    {
+    type: "list",
+    name: "license",
+    message: "What type of license should apply to your project?",
+    choices: ["MIT", "Apache", "GPL"],
     }
-
-    setDate();
-
-The library was also used to store the current hour of the day in a variable. That variable was then used to determine what class - past, present, or future - should be assigned to each time block. The class determined the color-coding each block received. 
-
-**Variable and function used to determine past, present, or future classification**
-
-    var currentHour = moment().format("H");
-
-    function pastPresentFuture9 () {
-    if (currentHour == 9) {
-        $("#9").removeClass("past");
-        $("#9").removeClass("future");
-        $("#9").addClass("present");
-    } 
-
-    else if (currentHour > 9) {
-        $("#9").removeClass("present");
-        $("#9").removeClass("future");
-        $("#9").addClass("past");
-    }
-
-    else {
-        $("#9").removeClass("present");
-        $("#9").removeClass("past");
-        $("#9").addClass("future");
-    }}
 
 Text areas were used to capture events and/or tasks for each given time block. Each text area has an associated save button, and when a user selects the button, any text they entered is saved to local storage.  
 
@@ -88,7 +78,7 @@ Contact me at the following locations:
 ## Location
 Use the following link to access the repository associated with this project: [README Generator Repository](https://github.com/larrygjenkins/README_Generator)
 
-Use the following link to access the application: [Daily Planner](https://larrygjenkins.github.io/DailyPlanner/)
+Use the following link to view a video demonstration of the application: [README Generator Video Demo](https://larrygjenkins.github.io/DailyPlanner/)
 
 ## Example Image
 Following is an image of the application:
