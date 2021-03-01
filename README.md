@@ -87,7 +87,7 @@ Contact me at the following locations:
 ## Location
 Use the following link to access the repository associated with this project: [README Generator Repository](https://github.com/larrygjenkins/README_Generator)
 
-Use the following link to view a video demonstration of the application: [README Generator Video Demo](https://larrygjenkins.github.io/DailyPlanner/)
+Use the following link to view a video demonstration of the application: [README Generator Video Demo](https://drive.google.com/file/d/11E0SRI9G_7fMhlCzn8J8WfXWvPfSmS84/view)
 
 ## Example Image
 Following is an image of the application:
